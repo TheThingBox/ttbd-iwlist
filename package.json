@@ -1,0 +1,17 @@
+{
+  "name": "ttbd-iwlist",
+  "version": "1.0.0",
+  "homepage": "http://thethingbox.io/",
+  "private": true,
+  "dependencies": {
+    "ttbd-exec": "TheThingBox/ttbd-exec#4b806ff"
+  },
+  "contributors": [
+    {
+      "name": "Digital Airaways"
+    }
+  ],
+  "engines": {
+    "node": ">=6"
+  }
+}
