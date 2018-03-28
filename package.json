@@ -4,7 +4,7 @@
   "homepage": "http://thethingbox.io/",
   "private": true,
   "dependencies": {
-    "ttbd-exec": "TheThingBox/ttbd-exec#4b806ff"
+    "ttbd-exec": "TheThingBox/ttbd-exec#b3d89e7"
   },
   "contributors": [
     {
