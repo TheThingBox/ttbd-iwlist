@@ -18,7 +18,7 @@ function IW (iface, exec_option) {
 IW.prototype = new EventEmitter;
 
 IW.prototype.associated = function(cb) {
-    exec({cmd: `iwconfig ${this.iface}`}, this.exec_option, function(err, stdout, stderr) {
+    exec(`iwconfig ${this.iface}`, this.exec_option, function(err, stdout, stderr) {
         if (err) return cb(err)
         try {
             var status = stdout.match(/Access Point: (.*)\n/)[1]
@@ -38,14 +38,14 @@ IW.prototype.online = function(cb) {
 }
 
 IW.prototype.disconnect = function(cb) {
-    exec({cmd: `iwconfig ${this.iface} essid off`}, cb)
+    exec(`iwconfig ${this.iface} essid off`, this.exec_option, cb)
 }
 
 IW.prototype.scan = function (cb) {
     var ap = []
     var current = null;
 
-    exec({cmd: `iwlist ${this.iface} scan`}, this.exec_option, function(err, stdout, stderr) {
+    exec(`iwlist ${this.iface} scan`, this.exec_option, function(err, stdout, stderr) {
         if(err){
             cb(err, stderr)
             return
@@ -89,7 +89,7 @@ IW.prototype.connect = function (ap, cb) {
     var returned = false
     if (typeof ap === 'string') ap = { essid : ap };
     
-    exec({cmd: `iwconfig ${self.iface} essid ${ap.essid}`}, this.exec_option, function(err, stdout, stderr) {
+    exec(`iwconfig ${self.iface} essid ${ap.essid}`, this.exec_option, function(err, stdout, stderr) {
       if (stderr !== '') {
         returned = true
         return cb(stderr)
@@ -97,7 +97,7 @@ IW.prototype.connect = function (ap, cb) {
     })
     
     var iv = setInterval(function (err, stdout, stderr) {
-        exec({cmd: `iwconfig ${self.iface}`}, this.exec_option, function(err, stdout, stderr) {
+        exec(`iwconfig ${self.iface}`, this.exec_option, function(err, stdout, stderr) {
             var m;
             if (m = /ESSID:"(.+?)"/.exec(stdout)) {
                 if (m[1] === ap.essid) {
