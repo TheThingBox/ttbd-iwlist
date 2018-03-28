@@ -10,7 +10,7 @@ module.exports = function (iface, exec_option) {
 };
 
 function IW (iface, exec_option) {
-    if (!(this instanceof IW)) return new IW(iface);
+    if (!(this instanceof IW)) return new IW(iface, exec_option);
     this.iface = iface;
     this.exec_option = exec_option || {} ;
 }
